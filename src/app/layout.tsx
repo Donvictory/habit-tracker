@@ -8,7 +8,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "HabitFlow | Master Your Routine",
+  title: "Habit Tracker | Master Your Routine",
   description: "A premium habit tracker designed for consistency.",
 };
 

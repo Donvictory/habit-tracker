@@ -24,7 +24,7 @@ export default function SplashScreen({ status = "Initializing..." }: SplashScree
         {/* Branding */}
         <div className="text-center space-y-2">
           <h1 className="text-4xl font-bold tracking-tight text-foreground">
-            Habit<span className="text-primary">Flow</span>
+            Habit <span className="text-primary">Tracker</span>
           </h1>
           <p className="text-muted-foreground font-medium flex items-center justify-center gap-2">
             <Loader2 className="w-4 h-4 animate-spin" />

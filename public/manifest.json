@@ -1,8 +1,8 @@
 {
   "id": "/",
-  "name": "HabitFlow",
-  "short_name": "HabitFlow",
-  "description": "Master your routine with HabitFlow.",
+  "name": "Habit Tracker",
+  "short_name": "Habit Tracker",
+  "description": "Master your routine with Habit Tracker.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#020617",

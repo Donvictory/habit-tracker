@@ -96,7 +96,7 @@ export default function DashboardPage() {
                 <Activity className="w-5 h-5 text-primary" />
               </div>
               <span className="font-bold text-xl tracking-tight">
-                HabitFlow
+                Habit Tracker
               </span>
             </div>
 

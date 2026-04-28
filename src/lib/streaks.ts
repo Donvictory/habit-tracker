@@ -1,17 +1,19 @@
-export function calculateCurrentStreak(completions: string[], today?: string): number {
+export function calculateCurrentStreak(
+  completions: string[],
+  today?: string,
+): number {
   if (completions.length === 0) return 0;
 
-  // 1. Remove duplicates and sort descending
-  const sortedDates = Array.from(new Set(completions)).sort((a, b) => b.localeCompare(a));
+  const sortedDates = Array.from(new Set(completions)).sort((a, b) =>
+    b.localeCompare(a),
+  );
 
-  // 2. Determine "Today" (use provided date or current local date in YYYY-MM-DD)
-  const todayStr = today || new Date().toISOString().split('T')[0];
+  const todayStr = today || new Date().toISOString().split("T")[0];
 
-  // 3. If today is not completed, streak is 0
   if (!sortedDates.includes(todayStr)) return 0;
 
   let streak = 0;
-  // Use T12:00:00 to avoid DST and timezone shift issues when walking days
+
   let currentDate = new Date(todayStr + "T12:00:00");
 
   while (true) {
