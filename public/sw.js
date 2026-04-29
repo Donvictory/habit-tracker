@@ -1,5 +1,5 @@
 // public/sw.js
-const CACHE_NAME = "habit-tracker-cache-v3";
+const CACHE_NAME = "habit-tracker-cache-v4";
 const ASSETS_TO_CACHE = [
   "/",
   "/login",
@@ -13,7 +13,7 @@ const ASSETS_TO_CACHE = [
 ];
 
 self.addEventListener("install", (event) => {
-  self.skipWaiting(); // Force the waiting service worker to become active
+  self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       return cache.addAll(ASSETS_TO_CACHE);
@@ -22,23 +22,38 @@ self.addEventListener("install", (event) => {
 });
 
 self.addEventListener("activate", (event) => {
-  event.waitUntil(clients.claim()); // Become the controller for all clients immediately
+  event.waitUntil(
+    caches
+      .keys()
+      .then((cacheNames) => {
+        return Promise.all(
+          cacheNames.map((cacheName) => {
+            if (cacheName !== CACHE_NAME) {
+              return caches.delete(cacheName);
+            }
+          }),
+        );
+      })
+      .then(() => clients.claim()),
+  );
 });
 
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
 
   const url = new URL(event.request.url);
-  // Bypass cache for Next.js App Router RSC payloads
   if (url.searchParams.has("_rsc")) {
     return;
   }
 
   event.respondWith(
-    caches.match(event.request, { ignoreSearch: true }).then((response) => {
-      return response || fetch(event.request);
-    }).catch(() => {
-      return fetch(event.request);
-    })
+    caches
+      .match(event.request, { ignoreSearch: true })
+      .then((response) => {
+        return response || fetch(event.request);
+      })
+      .catch(() => {
+        return fetch(event.request);
+      }),
   );
 });

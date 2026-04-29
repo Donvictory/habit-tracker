@@ -11,21 +11,18 @@ export default function ProtectedRoute({
   children: React.ReactNode;
 }) {
   const router = useRouter();
-  const [isAuthorized, setIsAuthorized] = useState(() => {
-    if (typeof window !== "undefined") {
-      return !!getSession();
-    }
-    return false;
-  });
+  const [isAuthorized, setIsAuthorized] = useState(false);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
+    setIsClient(true);
     const session = getSession();
     if (!session) {
       router.push("/login");
-    } else if (!isAuthorized) {
+    } else {
       setIsAuthorized(true);
     }
-  }, [router, isAuthorized]);
+  }, [router]);
 
   if (!isAuthorized) {
     return <SplashScreen status="Verifying access..." />;
