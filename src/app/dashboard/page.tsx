@@ -11,12 +11,11 @@ import {
 } from "@/lib/storage";
 import { Session } from "@/types/auth";
 import { Habit } from "@/types/habit";
+import { LogOut, Plus, Activity } from "lucide-react";
 import {
-  LogOut,
-  Plus,
-  Activity,
-} from "lucide-react";
-import { CreateHabitModal, EditHabitModal } from "@/components/habits/HabitForm";
+  CreateHabitModal,
+  EditHabitModal,
+} from "@/components/habits/HabitForm";
 import HabitList from "@/components/habits/HabitList";
 import { toggleHabitCompletion } from "@/lib/habits";
 
@@ -120,7 +119,9 @@ export default function DashboardPage() {
             <div>
               <h1 className="text-3xl font-bold">Your Dashboard</h1>
               <p className="text-muted-foreground mt-1 font-medium">
-                You have {habits.length} active habits.
+                {habits.length <= 1
+                  ? `You have ${habits.length} active habit.`
+                  : `You have ${habits.length} active habits.`}
               </p>
             </div>
             <button
@@ -133,7 +134,7 @@ export default function DashboardPage() {
             </button>
           </div>
 
-          <HabitList 
+          <HabitList
             habits={habits}
             onToggle={handleToggleHabit}
             onEdit={openEditModal}
