@@ -24,14 +24,14 @@
   "categories": ["productivity", "lifestyle", "health"],
   "screenshots": [
     {
-      "src": "/screenshots/desktop.png",
+      "src": "/icons/desktop.png",
       "sizes": "1024x1024",
       "type": "image/png",
       "form_factor": "wide",
       "label": "Habit Tracker Desktop View"
     },
     {
-      "src": "/screenshots/mobile.png",
+      "src": "/icons/mobile.png",
       "sizes": "1024x1024",
       "type": "image/png",
       "form_factor": "narrow",
