@@ -37,12 +37,8 @@ export default function SignupForm() {
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-
   const onSubmit = async (data: z.infer<typeof SignupSchema>) => {
     // 1. Simulate a tiny delay for UX
-    if (isLoading) return;
-    setIsLoading(true);
     await new Promise((resolve) => setTimeout(resolve, 800));
 
     // 2. Check if user exists
@@ -69,7 +65,6 @@ export default function SignupForm() {
 
     // 5. Redirect
     router.push("/dashboard");
-    setIsLoading(false);
   };
 
   return (

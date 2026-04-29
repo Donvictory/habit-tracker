@@ -15,11 +15,11 @@ export default function RootPage() {
     // Brief delay for the splash animation to show
     const timer = setTimeout(() => {
       if (session) {
-        router.push("/dashboard");
+        router.replace("/dashboard");
       } else {
-        router.push("/login");
+        router.replace("/login");
       }
-    }, 800);
+    }, 200);
 
     return () => clearTimeout(timer);
   }, [router]);

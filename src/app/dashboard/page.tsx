@@ -16,8 +16,7 @@ import {
   Plus,
   Activity,
 } from "lucide-react";
-import CreateHabitModal from "@/components/habits/CreateHabitModal";
-import EditHabitModal from "@/components/habits/EditHabitModal";
+import { CreateHabitModal, EditHabitModal } from "@/components/habits/HabitForm";
 import HabitList from "@/components/habits/HabitList";
 import { toggleHabitCompletion } from "@/lib/habits";
 

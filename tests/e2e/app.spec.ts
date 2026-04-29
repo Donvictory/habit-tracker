@@ -237,6 +237,6 @@ test.describe("Habit Tracker app", () => {
     await page.reload();
 
     // Check if app shell (branding) is still there
-    await expect(page.getByText(/Habit Tracker/i)).toBeVisible();
+    await expect(page.getByText(/Habit Tracker/i).first()).toBeVisible();
   });
 });

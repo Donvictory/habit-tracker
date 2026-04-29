@@ -1,5 +1,5 @@
 // public/sw.js
-const CACHE_NAME = "habit-tracker-cache-v2";
+const CACHE_NAME = "habit-tracker-cache-v3";
 const ASSETS_TO_CACHE = [
   "/",
   "/login",

@@ -21,19 +21,21 @@
       "purpose": "maskable"
     }
   ],
+  "categories": ["productivity", "lifestyle", "health"],
   "screenshots": [
     {
       "src": "/screenshots/desktop.png",
       "sizes": "1024x1024",
       "type": "image/png",
       "form_factor": "wide",
-      "label": "Desktop Dashboard"
+      "label": "Habit Tracker Desktop View"
     },
     {
       "src": "/screenshots/mobile.png",
       "sizes": "1024x1024",
       "type": "image/png",
-      "label": "Mobile App View"
+      "form_factor": "narrow",
+      "label": "Habit Tracker Mobile View"
     }
   ]
 }

@@ -11,7 +11,12 @@ type HabitListProps = {
   onCreate: () => void;
 };
 
-export default function HabitList({ habits, onToggle, onEdit, onCreate }: HabitListProps) {
+export default function HabitList({
+  habits,
+  onToggle,
+  onEdit,
+  onCreate,
+}: HabitListProps) {
   if (habits.length === 0) {
     return (
       <div
