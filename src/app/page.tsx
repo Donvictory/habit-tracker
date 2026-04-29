@@ -11,8 +11,7 @@ export default function RootPage() {
 
   useEffect(() => {
     const session = getSession();
-    
-    // Brief delay for the splash animation to show
+
     const timer = setTimeout(() => {
       if (session) {
         router.replace("/dashboard");

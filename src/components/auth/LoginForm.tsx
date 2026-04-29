@@ -28,13 +28,11 @@ export default function LoginForm() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const onSubmit = async (data: z.infer<typeof LoginSchema>) => {
-    // 1. Simulate delay for UX
     await new Promise((resolve) => setTimeout(resolve, 800));
 
-    // 2. Find user
     const users = getUsers();
     const user = users.find(
-      (u) => u.email === data.email && u.password === data.password
+      (u) => u.email === data.email && u.password === data.password,
     );
 
     if (!user) {
@@ -42,13 +40,11 @@ export default function LoginForm() {
       return;
     }
 
-    // 3. Save Session
     saveSession({
       userId: user.id,
       email: user.email,
     });
 
-    // 4. Redirect
     router.push("/dashboard");
   };
 
@@ -58,7 +54,10 @@ export default function LoginForm() {
       className="flex flex-col gap-6 w-full max-w-md p-8 bg-surface border border-border rounded-2xl shadow-premium"
     >
       <div className="flex flex-col gap-2">
-        <label htmlFor="login-email" className="text-sm font-medium text-muted-foreground ml-1">
+        <label
+          htmlFor="login-email"
+          className="text-sm font-medium text-muted-foreground ml-1"
+        >
           Email Address
         </label>
         <div className="relative group">
@@ -85,7 +84,10 @@ export default function LoginForm() {
 
       <div className="flex flex-col gap-2">
         <div className="flex justify-between items-center ml-1">
-          <label htmlFor="login-password" className="text-sm font-medium text-muted-foreground">
+          <label
+            htmlFor="login-password"
+            className="text-sm font-medium text-muted-foreground"
+          >
             Password
           </label>
           <a

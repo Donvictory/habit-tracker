@@ -7,8 +7,6 @@ const KEYS = {
   HABITS: "habit-tracker-habits",
 };
 
-// --- Generic Helpers ---
-
 function getItem<T>(key: string): T | null {
   if (typeof window === "undefined") return null;
   const item = localStorage.getItem(key);
@@ -24,8 +22,6 @@ function setItem<T>(key: string, value: T): void {
   if (typeof window === "undefined") return;
   localStorage.setItem(key, JSON.stringify(value));
 }
-
-// --- Auth Storage ---
 
 export function getUsers(): User[] {
   return getItem<User[]>(KEYS.USERS) || [];
@@ -43,8 +39,6 @@ export function getSession(): Session | null {
 export function saveSession(session: Session | null): void {
   setItem(KEYS.SESSION, session);
 }
-
-// --- Habit Storage ---
 
 export function getHabits(): Habit[] {
   return getItem<Habit[]>(KEYS.HABITS) || [];

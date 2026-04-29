@@ -38,32 +38,27 @@ export default function SignupForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const onSubmit = async (data: z.infer<typeof SignupSchema>) => {
-    // 1. Simulate a tiny delay for UX
     await new Promise((resolve) => setTimeout(resolve, 800));
 
-    // 2. Check if user exists
     const users = getUsers();
     if (users.some((u) => u.email === data.email)) {
       setError("email", { message: "This email is already registered" });
       return;
     }
 
-    // 3. Create the user object
     const newUser = {
       id: crypto.randomUUID(),
       email: data.email,
-      password: data.password, // Storing plain for this stage as per requirements
+      password: data.password,
       createdAt: new Date().toISOString(),
     };
 
-    // 4. Persist
     saveUser(newUser);
     saveSession({
       userId: newUser.id,
       email: newUser.email,
     });
 
-    // 5. Redirect
     router.push("/dashboard");
   };
 
@@ -73,7 +68,10 @@ export default function SignupForm() {
       className="flex flex-col gap-5 w-full max-w-md p-8 bg-surface border border-border rounded-2xl shadow-premium"
     >
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="full-name" className="text-sm font-medium text-muted-foreground ml-1">
+        <label
+          htmlFor="full-name"
+          className="text-sm font-medium text-muted-foreground ml-1"
+        >
           Full Name
         </label>
         <div className="relative group">
@@ -96,7 +94,10 @@ export default function SignupForm() {
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="signup-email" className="text-sm font-medium text-muted-foreground ml-1">
+        <label
+          htmlFor="signup-email"
+          className="text-sm font-medium text-muted-foreground ml-1"
+        >
           Email Address
         </label>
         <div className="relative group">
@@ -121,7 +122,10 @@ export default function SignupForm() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="flex flex-col gap-1.5">
-          <label htmlFor="signup-password" className="text-sm font-medium text-muted-foreground ml-1">
+          <label
+            htmlFor="signup-password"
+            className="text-sm font-medium text-muted-foreground ml-1"
+          >
             Password
           </label>
           <div className="relative group">
@@ -156,7 +160,10 @@ export default function SignupForm() {
         </div>
 
         <div className="flex flex-col gap-1.5">
-          <label htmlFor="signup-confirm" className="text-sm font-medium text-muted-foreground ml-1">
+          <label
+            htmlFor="signup-confirm"
+            className="text-sm font-medium text-muted-foreground ml-1"
+          >
             Confirm
           </label>
           <div className="relative group">

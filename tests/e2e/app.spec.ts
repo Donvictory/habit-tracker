@@ -217,26 +217,27 @@ test.describe("Habit Tracker app", () => {
     page: Page;
   }) => {
     await page.goto("/");
-    
-    // Ensure service worker is registered and controlling the page
+
     await page.evaluate(async () => {
       if ("serviceWorker" in navigator) {
         await navigator.serviceWorker.ready;
         if (!navigator.serviceWorker.controller) {
           await new Promise((resolve) => {
-            navigator.serviceWorker.addEventListener("controllerchange", resolve, {
-              once: true,
-            });
+            navigator.serviceWorker.addEventListener(
+              "controllerchange",
+              resolve,
+              {
+                once: true,
+              },
+            );
           });
         }
       }
     });
 
-    // Simulate offline
     await context.setOffline(true);
     await page.reload();
 
-    // Check if app shell (branding) is still there
     await expect(page.getByText(/Habit Tracker/i).first()).toBeVisible();
   });
 });

@@ -5,10 +5,13 @@ import { useRouter } from "next/navigation";
 import { getSession } from "@/lib/storage";
 import SplashScreen from "./SplashScreen";
 
-export default function ProtectedRoute({ children }: { children: React.ReactNode }) {
+export default function ProtectedRoute({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const router = useRouter();
   const [isAuthorized, setIsAuthorized] = useState(() => {
-    // Check session synchronously on mount if possible to avoid flicker
     if (typeof window !== "undefined") {
       return !!getSession();
     }

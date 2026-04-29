@@ -127,13 +127,11 @@ export function CreateHabitModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      {/* Backdrop */}
       <div
         className="absolute inset-0 bg-slate-950/40 backdrop-blur-sm animate-in fade-in duration-300"
         onClick={onClose}
       />
 
-      {/* Modal Card */}
       <div className="relative w-full max-w-md bg-surface border border-border rounded-3xl shadow-2xl animate-in zoom-in-95 slide-in-from-bottom-4 duration-300 overflow-hidden">
         <div className="flex items-center justify-between p-6 border-b border-border">
           <h2 className="text-xl font-bold">New Habit</h2>
@@ -148,10 +146,8 @@ export function CreateHabitModal({
         <div className="p-6">
           <HabitForm
             onSubmit={async (data) => {
-              // 2. Artificial delay for "Premium" feel
               await new Promise((resolve) => setTimeout(resolve, 600));
 
-              // 3. Create Habit Object
               const newHabit: Habit = {
                 id: crypto.randomUUID(),
                 userId,
@@ -162,11 +158,9 @@ export function CreateHabitModal({
                 completions: [],
               };
 
-              // 4. Save to Storage
               const allHabits = getHabits();
               saveHabits([...allHabits, newHabit]);
 
-              // 5. Cleanup
               onSuccess();
               onClose();
             }}
@@ -178,7 +172,12 @@ export function CreateHabitModal({
   );
 }
 
-export function EditHabitModal({ habit, isOpen, onClose, onSuccess }: EditHabitModalProps) {
+export function EditHabitModal({
+  habit,
+  isOpen,
+  onClose,
+  onSuccess,
+}: EditHabitModalProps) {
   if (!isOpen || !habit) return null;
 
   const handleDelete = () => {

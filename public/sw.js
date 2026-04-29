@@ -8,8 +8,8 @@ const ASSETS_TO_CACHE = [
   // Removed '/globals.css' as it's a bundled asset, not a public one
   "/icons/icon-192.png",
   "/icons/icon-512.png",
-  "/screenshots/desktop.png",
-  "/screenshots/mobile.png",
+  "/icons/desktop.png",
+  "/icons/mobile.png",
 ];
 
 self.addEventListener("install", (event) => {
@@ -26,9 +26,19 @@ self.addEventListener("activate", (event) => {
 });
 
 self.addEventListener("fetch", (event) => {
+  if (event.request.method !== "GET") return;
+
+  const url = new URL(event.request.url);
+  // Bypass cache for Next.js App Router RSC payloads
+  if (url.searchParams.has("_rsc")) {
+    return;
+  }
+
   event.respondWith(
-    caches.match(event.request).then((response) => {
+    caches.match(event.request, { ignoreSearch: true }).then((response) => {
       return response || fetch(event.request);
-    }),
+    }).catch(() => {
+      return fetch(event.request);
+    })
   );
 });
